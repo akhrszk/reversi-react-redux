@@ -1,7 +1,28 @@
 
 .status {
-  margin: 10px;
+  width: 464px;
+  height: 32px;
+  margin: 10px auto;
+  background-color: #6c6b67;
+  line-height: 32px;
   font-size: 18px;
+  color: white;
+}
+
+.status ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
+
+.status ul li {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.diskCount {
+  display: inline-block;
 }
 
 .diskCount:first-child {
@@ -10,4 +31,12 @@
 
 .diskCount:last-child {
   margin-left: 5px;
+}
+
+.white {
+  color: white;
+}
+
+.black {
+  color: black;
 }

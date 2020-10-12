@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { Disk } from '../../domain/disk';
 import { selectBoard } from './boardSlice';
 import { useSelector } from 'react-redux';
@@ -13,13 +14,15 @@ const Cell: React.FC<{
   onClick: (position: [number, number]) => void
 }> = ({ disk, position, onClick }) => {
   if (disk === Disk.White) {
-    return (<button className={styles.cell}>o</button>)
+    return (<div className={classNames(styles.cell, styles.white)}>&#9679;</div>)
   }
   if (disk === Disk.Black) {
-    return (<button className={styles.cell}>x</button>);
+    return (<div className={classNames(styles.cell, styles.black)}>&#9679;</div>);
   }
   return (
-    <button className={styles.cell} onClick={() => onClick(position)}></button>
+    <div className={styles.cell}>
+      <button onClick={() => onClick(position)}></button>
+    </div>
   );
 }
 

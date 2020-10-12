@@ -1,17 +1,45 @@
 import React from 'react';
+import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import { selectStatus } from './statusSlice';
 import { Disk } from '../../domain/disk';
 
 import styles from './Status.module.css';
+import { Player } from '../../domain/player';
 
 type DiskCounterProps = { disk: Disk, value: number };
 const renderDiskCounter = (props: DiskCounterProps) => (
-  <span key={props.disk === Disk.White ? 'white' : 'black'}
+  <div key={props.disk === Disk.White ? 'white' : 'black'}
     className={styles.diskCount}
   >
-    {`${props.disk === Disk.White ? 'o' : 'x'}: ${props.value}`}
-  </span>
+    <span
+      className={
+        classNames({
+          [styles.white]: props.disk === Disk.White,
+          [styles.black]: props.disk === Disk.Black
+        })
+      }
+    >
+      &#9679;
+    </span>
+    <span>{`: ${props.value}`}</span>
+  </div>
+);
+
+const renderNextPlayer = (player: Player) => (
+  <div>
+    {'Next: '}
+    <span
+      className={
+        classNames({
+          [styles.white]: player.disk === Disk.White,
+          [styles.black]: player.disk === Disk.Black
+        })
+      }
+    >
+      &#9679;
+    </span>
+  </div>
 );
 
 export const Status = () => {
@@ -19,12 +47,14 @@ export const Status = () => {
 
   return (
     <div className={styles.status}>
-      <div>{`Step: #${step}`}</div>
+      <ul>
+        <li className={styles.item}>{`Step: #${step}`}</li>
       {nextPlayer
-        ? <div>{`Next: ${nextPlayer.disk === Disk.White ? 'o' : 'x'}`}</div>
-        : <div>Game...</div>
+        ? <li className={styles.item}>{renderNextPlayer(nextPlayer)}</li>
+        : <li className={styles.item}>Game...</li>
       }
-      <div>{diskCount.map(v => renderDiskCounter(v))}</div>
+      <li className={styles.item}>{diskCount.map(v => renderDiskCounter(v))}</li>
+      </ul>
     </div>
   );
 };
