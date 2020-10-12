@@ -8,6 +8,7 @@ import { initialDisks } from "../../core/game";
 interface Status {
   step: number,
   nextPlayer: Player|null,
+  winner: Player|null,
   diskCount: { disk: Disk, value: number }[]
 }
 
@@ -18,6 +19,7 @@ export const players: [Player, Player] = [player1, player2];
 const initialState: Status = {
   step: 1,
   nextPlayer: player1,
+  winner: null,
   diskCount: [
     { disk: Disk.White, value: countDisks(initialDisks(), Disk.White) },
     { disk: Disk.Black, value: countDisks(initialDisks(), Disk.Black) }
@@ -40,10 +42,14 @@ export const statusSlice = createSlice({
         { disk: Disk.Black, value: countDisks(disks, Disk.Black) }
       ];
     },
-    finishGame: (
-      state,
-      action: PayloadAction<(Disk|null)[]>
-    ) => {
+    finishGame: (state, action: PayloadAction<(Disk|null)[]>) => {
+      const whiteCount = countDisks(action.payload, Disk.White);
+      const blackCount = countDisks(action.payload, Disk.Black);
+      if (whiteCount > blackCount) {
+        state.winner = player1;
+      } else if (whiteCount < blackCount) {
+        state.winner = player2;
+      }
       state.nextPlayer = null;
     }
   }

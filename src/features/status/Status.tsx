@@ -42,16 +42,33 @@ const renderNextPlayer = (player: Player) => (
   </div>
 );
 
-export const Status = () => {
-  const { step, nextPlayer, diskCount } = useSelector(selectStatus);
+const renderWinner = (player: Player) => (
+  <div>
+    <span
+      className={
+        classNames({
+          [styles.white]: player.disk === Disk.White,
+          [styles.black]: player.disk === Disk.Black
+        })
+      }
+    >
+      &#9679;
+    </span>
+    {' won'}
+  </div>
+);
 
+export const Status = () => {
+  const { step, nextPlayer, winner, diskCount } = useSelector(selectStatus);
   return (
     <div className={styles.status}>
       <ul>
         <li className={styles.item}>{`Step: #${step}`}</li>
       {nextPlayer
         ? <li className={styles.item}>{renderNextPlayer(nextPlayer)}</li>
-        : <li className={styles.item}>Game...</li>
+        : winner
+          ? <li className={styles.item}>{renderWinner(winner)}</li>
+          : <li className={styles.item}>Tied</li>
       }
       <li className={styles.item}>{diskCount.map(v => renderDiskCounter(v))}</li>
       </ul>
