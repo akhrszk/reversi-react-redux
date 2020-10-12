@@ -1,0 +1,21 @@
+
+.board {
+  width: 448px;
+  height: 448px;
+  margin: 0 auto;
+}
+
+.cell {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 42px;
+  line-height: 56px;
+  height: 56px;
+  width: 56px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+}

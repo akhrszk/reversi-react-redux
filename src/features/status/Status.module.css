@@ -1,0 +1,13 @@
+
+.status {
+  margin: 10px;
+  font-size: 18px;
+}
+
+.diskCount:first-child {
+  margin-right: 5px;
+}
+
+.diskCount:last-child {
+  margin-left: 5px;
+}
