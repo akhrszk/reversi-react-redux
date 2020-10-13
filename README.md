@@ -1,6 +1,6 @@
 # リバーシ
 
-[React](https://ja.reactjs.org/)で作った[リバーシ](https://en.wikipedia.org/wiki/Reversi)アプリです。
+[React](https://ja.reactjs.org/)を用いて作った[リバーシ](https://en.wikipedia.org/wiki/Reversi)アプリです。
 
 ![screenshot](https://github.com/akhrszk/reversi/blob/images/screenshot.png)
 
@@ -61,14 +61,14 @@ app|storeやconfigなど
 domain|エンティティ
 features|コンポーネントなど
 core|リバーシのロジック
-util|開発をする上で便利関数など
+utils|開発をする上で便利関数など
 
 ## アーキテクチャ
 
 Reduxで`石の配置` `ターン`をstateで管理。
 
-特に[Gameコンポーネント](https://github.com/akhrszk/reversi/blob/master/src/features/game/Game.tsx)はGameManager的な役割を果たしており、
-ターン毎に、 **現在の盤面に対して石を置ける場所の計算の実行**、また**置ける場所がなかった場合にパス処理の実行**、**ゲームが終了したかどうかの管理や終了処理の実行**を行っています。
+[Gameコンポーネント](https://github.com/akhrszk/reversi/blob/master/src/features/game/Game.tsx)はGameManager的な役割を果たしており、
+ターン毎に、**石を置ける場所があるかどうかの確認**, **なかった場合にパス処理の実行**, **ゲームが終了したかどうかの確認や終了処理の実行**を行っています。
 
 ゲームが終了したかどうかの判定は、白黒共に置ける場所がなくなった場合をゲームが終了したとみなします。
 

@@ -6,23 +6,24 @@ import { Disk } from '../../domain/disk';
 
 import styles from './Status.module.css';
 import { Player } from '../../domain/player';
+import { selectBoard } from '../board/boardSlice';
+import { countDisks } from '../../utils/utils';
 
-type DiskCounterProps = { disk: Disk, value: number };
-const renderDiskCounter = (props: DiskCounterProps) => (
-  <div key={props.disk === Disk.White ? 'white' : 'black'}
+const renderDiskCounter = (disk: Disk, count: number) => (
+  <div key={disk === Disk.White ? 'white' : 'black'}
     className={styles.diskCount}
   >
     <span
       className={
         classNames({
-          [styles.white]: props.disk === Disk.White,
-          [styles.black]: props.disk === Disk.Black
+          [styles.white]: disk === Disk.White,
+          [styles.black]: disk === Disk.Black
         })
       }
     >
       &#9679;
     </span>
-    <span>{`: ${props.value}`}</span>
+    <span>{`: ${count}`}</span>
   </div>
 );
 
@@ -59,7 +60,8 @@ const renderWinner = (player: Player) => (
 );
 
 export const Status = () => {
-  const { step, nextPlayer, winner, diskCount } = useSelector(selectStatus);
+  const { step, nextPlayer, winner } = useSelector(selectStatus);
+  const { disks } = useSelector(selectBoard);
   return (
     <div className={styles.status}>
       <ul>
@@ -70,7 +72,9 @@ export const Status = () => {
           ? <li className={styles.item}>{renderWinner(winner)}</li>
           : <li className={styles.item}>Tied</li>
       }
-      <li className={styles.item}>{diskCount.map(v => renderDiskCounter(v))}</li>
+      <li className={styles.item}>
+        {[Disk.White, Disk.Black].map(disk => renderDiskCounter(disk, countDisks(disks, disk)))}
+      </li>
       </ul>
     </div>
   );
