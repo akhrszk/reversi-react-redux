@@ -31,9 +31,12 @@ export const boardSlice = createSlice({
       const { disk, position } = action.payload;
       const { disks } = state;
       setDisk(disks, disk, position);
+
+      /* 挟んだ石をひっくり返す */
       const lines = calculateFlipLines(disks, disk, position);
       lines.forEach(line => line.forEach(position => flipDisk(disks, position)));
 
+      /* 白黒それぞれ置くことができる場所を計算 */
       state.puttablePositions = [
         { disk: Disk.White, value: calculatePuttablePositions(disks, Disk.White) },
         { disk: Disk.Black, value: calculatePuttablePositions(disks, Disk.Black) },

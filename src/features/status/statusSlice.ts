@@ -3,13 +3,11 @@ import { Player } from "../../domain/player";
 import { RootState } from "../../app/store";
 import { Disk } from "../../domain/disk";
 import { countDisks } from "../../utils/utils";
-import { initialDisks } from "../../core/game";
 
 interface Status {
   step: number,
   nextPlayer: Player|null,
   winner: Player|null,
-  diskCount: { disk: Disk, value: number }[]
 }
 
 const player1: Player = { disk: Disk.White };
@@ -20,10 +18,6 @@ const initialState: Status = {
   step: 1,
   nextPlayer: player1,
   winner: null,
-  diskCount: [
-    { disk: Disk.White, value: countDisks(initialDisks(), Disk.White) },
-    { disk: Disk.Black, value: countDisks(initialDisks(), Disk.Black) }
-  ]
 };
 
 export const statusSlice = createSlice({
@@ -34,13 +28,6 @@ export const statusSlice = createSlice({
       const { step } = state;
       state.nextPlayer = players[(step + 1) % 2 === 0 ? 1 : 0];
       state.step = step + 1;
-    },
-    updateDiskCount: (state, action: PayloadAction<(Disk|null)[]>) => {
-      const disks = action.payload;
-      state.diskCount = [
-        { disk: Disk.White, value: countDisks(disks, Disk.White) },
-        { disk: Disk.Black, value: countDisks(disks, Disk.Black) }
-      ];
     },
     finishGame: (state, action: PayloadAction<(Disk|null)[]>) => {
       const whiteCount = countDisks(action.payload, Disk.White);
@@ -55,7 +42,7 @@ export const statusSlice = createSlice({
   }
 });
 
-export const { nextTurn, updateDiskCount, finishGame } = statusSlice.actions;
+export const { nextTurn, finishGame } = statusSlice.actions;
 
 export const selectStatus = (state: RootState) => state.status;
 
