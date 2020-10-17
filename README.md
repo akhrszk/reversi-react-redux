@@ -3,7 +3,9 @@
 [React](https://ja.reactjs.org/) x [Redux](https://redux.js.org/)
 で作った[リバーシ](https://en.wikipedia.org/wiki/Reversi)アプリ
 
-![screenshot](https://github.com/akhrszk/reversi/blob/images/screenshot.png)
+動くものは[こちら](https://akhrszk.github.io/reversi/)から確認できます
+
+[![screenshot](https://github.com/akhrszk/reversi/blob/images/screenshot.png)](https://akhrszk.github.io/reversi/)
 
 ## 技術スタック
 
