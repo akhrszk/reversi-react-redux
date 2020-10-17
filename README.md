@@ -1,6 +1,7 @@
 # リバーシ
 
-[React](https://ja.reactjs.org/)を用いて作った[リバーシ](https://en.wikipedia.org/wiki/Reversi)アプリです。
+[React](https://ja.reactjs.org/) x [Redux](https://redux.js.org/)
+で作った[リバーシ](https://en.wikipedia.org/wiki/Reversi)アプリ
 
 ![screenshot](https://github.com/akhrszk/reversi/blob/images/screenshot.png)
 
