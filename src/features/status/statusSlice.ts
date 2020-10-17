@@ -10,8 +10,8 @@ interface Status {
   winner: Player|null,
 }
 
-const player1: Player = { disk: Disk.White };
-const player2: Player = { disk: Disk.Black };
+const player1: Player = { disk: Disk.Black };
+const player2: Player = { disk: Disk.White };
 export const players: [Player, Player] = [player1, player2];
 
 const initialState: Status = {

@@ -73,7 +73,7 @@ export const Status = () => {
           : <li className={styles.item}>Tied</li>
       }
       <li className={styles.item}>
-        {[Disk.White, Disk.Black].map(disk => renderDiskCounter(disk, countDisks(disks, disk)))}
+        {[Disk.Black, Disk.White].map(disk => renderDiskCounter(disk, countDisks(disks, disk)))}
       </li>
       </ul>
     </div>
