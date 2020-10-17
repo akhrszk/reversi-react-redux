@@ -1,8 +1,13 @@
 import { Disk } from "../domain/disk";
 import config from "../app/config";
 import { convertToIndexFromPosition } from "../utils/utils";
+import { Player } from "../domain/player";
 
 const { boardWidth: width } = config;
+
+const player1: Player = { disk: Disk.Black };
+const player2: Player = { disk: Disk.White };
+export const players: [Player, Player] = [player1, player2];
 
 export const initialDisks = (): (Disk|null)[] => {
   const disks: (Disk|null)[] =

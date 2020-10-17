@@ -3,6 +3,7 @@ import { Player } from "../../domain/player";
 import { RootState } from "../../app/store";
 import { Disk } from "../../domain/disk";
 import { countDisks } from "../../utils/utils";
+import { players } from "../../core/game";
 
 interface Status {
   step: number,
@@ -10,13 +11,9 @@ interface Status {
   winner: Player|null,
 }
 
-const player1: Player = { disk: Disk.Black };
-const player2: Player = { disk: Disk.White };
-export const players: [Player, Player] = [player1, player2];
-
 const initialState: Status = {
   step: 1,
-  nextPlayer: player1,
+  nextPlayer: players[0],
   winner: null,
 };
 
@@ -33,9 +30,9 @@ export const statusSlice = createSlice({
       const whiteCount = countDisks(action.payload, Disk.White);
       const blackCount = countDisks(action.payload, Disk.Black);
       if (whiteCount > blackCount) {
-        state.winner = player1;
+        state.winner = players.find(player => player.disk === Disk.White) || null;
       } else if (whiteCount < blackCount) {
-        state.winner = player2;
+        state.winner = players.find(player => player.disk === Disk.Black) || null;
       }
       state.nextPlayer = null;
     }
