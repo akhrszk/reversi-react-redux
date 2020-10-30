@@ -3,9 +3,9 @@
 [React](https://ja.reactjs.org/) x [Redux](https://redux.js.org/)
 で作った[リバーシ](https://en.wikipedia.org/wiki/Reversi)アプリ
 
-動くものは[こちら](https://akhrszk.github.io/reversi/)から確認できます
+動くものは[こちら](https://akhrszk.github.io/reversi-react-redux/)から確認できます
 
-[![screenshot](https://github.com/akhrszk/reversi/blob/images/screenshot.png)](https://akhrszk.github.io/reversi/)
+[![screenshot](https://github.com/akhrszk/reversi-react-redux/blob/images/screenshot.png)](https://akhrszk.github.io/reversi-react-redux/)
 
 ## 技術スタック
 
@@ -16,8 +16,8 @@
 ## 実行方法
 
 ```
-$ git clone git@github.com:akhrszk/reversi.git
-$ cd reversi
+$ git clone git@github.com:akhrszk/reversi-react-redux.git
+$ cd reversi-react-redux
 $ yarn start
 ```
 
@@ -70,7 +70,7 @@ utils|開発をする上で便利関数など
 
 Reduxで`石の配置` `ターン`をstateで管理。
 
-[Gameコンポーネント](https://github.com/akhrszk/reversi/blob/master/src/features/game/Game.tsx)はGameManager的な役割を果たしており、
+[Gameコンポーネント](https://github.com/akhrszk/reversi-react-redux/blob/master/src/features/game/Game.tsx)はGameManager的な役割を果たしており、
 ターン毎に、**石を置ける場所があるかどうかの確認**, **なかった場合にパス処理の実行**, **ゲームが終了したかどうかの確認や終了処理の実行**を行っています。
 
 ゲームが終了したかどうかの判定は、白黒共に置ける場所がなくなった場合をゲームが終了したとみなします。
@@ -79,4 +79,4 @@ Reduxで`石の配置` `ターン`をstateで管理。
 
 ## ライセンス
 
-[MIT License](https://github.com/akhrszk/reversi/blob/master/LICENSE)
+[MIT License](https://github.com/akhrszk/reversi-react-redux/blob/master/LICENSE)
